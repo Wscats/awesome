@@ -26,6 +26,8 @@
 小于min — 不需要在下沉
 大于min — 和min交换位置（下沉） - 继续和下一层孩子节点比较，直到队列末尾
 
-## 树结构
+## 参考文档
+
+- [JS实现堆排序](https://segmentfault.com/a/1190000015487916?utm_source=tag-newest)
 
 
