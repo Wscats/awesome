@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="web-gl2-random-output"></canvas>
+    <script src="../gpu.js"></script>
+    <script>
+        // 一维随机数组
+        const webGL2 = new GPU({
+            mode: 'webgl2',
+            canvas: document.getElementById('web-gl2-random-output')
+        });
+        const myFunc = webGL2.createKernel(function () {
+                this.color(Math.random(), Math.random(), Math.random());
+            })
+            .setGraphical(true)
+            .setOutput([200, 200]);
+
+        function draw() {
+            myFunc();
+            requestAnimationFrame(draw);
+        }
+        requestAnimationFrame(draw);
+    </script>
+</body>
+
+</html>

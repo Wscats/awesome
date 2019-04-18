@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <script src="./gpu.js"></script>
+    <script src="../gpu.js"></script>
     <script>
         console.time("测试gpu速度");
         const gpu = new GPU();
@@ -21,6 +21,10 @@
                 x: 100000000
             }
         });
+        // 上下两种写法等价
+        const myFunc2 = gpu.createKernel(function () {
+            return this.thread.x;
+        }).setOutput([100000000]);
         console.log(myFunc());
         console.timeEnd("测试gpu速度");
         // Perform matrix multiplication on 2 matrices of size 512 x 512

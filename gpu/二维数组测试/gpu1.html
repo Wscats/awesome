@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="../gpu.js"></script>
+    <script>
+        const gpu = new GPU();
+        const matMult = gpu.createKernel(function (x) {
+            // this.thread.x是从0，1，2，3...一直递增下去 索引值
+            // x是外部传来的值
+            return x + this.thread.x;
+        }).setOutput([512, 512]);
+        // 传值进回调函数里面
+        console.log(matMult(2));
+    </script>
+</body>
+
+</html>

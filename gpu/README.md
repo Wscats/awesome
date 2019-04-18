@@ -1,3 +1,9 @@
+# gpu.js
+
+GPU，全称**Graphics Processing Unit**，即图像处理器，早期主要用于显示图像使用。因为图像处理主要偏简单的矩阵运算，逻辑判断等很少，因此`GPU`的设计跟`CPU`架构不一样，也因此做到一个`GPU`上可以有很多计算单元，可以进行大量并行计算。
+
+`gpu.js`这个库会把你写的`JS`编译成`GLSL`然后在`GPU`上执行，以达到加速的效果。并且，如果电脑不支持`GPU`，它还会当成普通的`JS`执行，更多详情请查看[gpu.js](https://github.com/gpujs/gpu.js)。
+
 # GPU VS CPU
 
 一维数组计算
