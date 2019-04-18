@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./gpu.js"></script>
+    <script>
+        console.time("测试gpu速度");
+        const gpu = new GPU();
+        console.log(gpu);
+        const myFunc = gpu.createKernel(function () {
+            return this.thread.x;
+        }, {
+            output: {
+                x: 100000000
+            }
+        });
+        console.log(myFunc());
+        console.timeEnd("测试gpu速度");
+        // Perform matrix multiplication on 2 matrices of size 512 x 512
+    </script>
+</body>
+
+</html>
