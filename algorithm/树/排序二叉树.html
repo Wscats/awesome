@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function BinaryTree() {
+            // 节点
+            var Node = function (key) {
+                // 节点值
+                this.key = key;
+                // 左叶子
+                this.left = null;
+                // 右叶子
+                this.right = null;
+            };
+            // 根节点
+            this.root = null;
+            // 插入节点
+            var insertNode = function (node, newNode) {
+                // 对比值 新值小于根(该)节点值，放左边
+                if (newNode.key < node.key) {
+                    // 左边如果为空直接放入
+                    if (node.left === null) {
+                        node.left = newNode;
+                    // 左边如果不为空把节点取出来继续往下面对比
+                    } else {
+                        insertNode(node.left, newNode);
+                    }
+                } else {
+                    if (node.right === null) {
+                        node.right = newNode;
+                    } else {
+                        insertNode(node.right, newNode);
+                    }
+                }
+            };
+            this.insert = function (key) {
+                // 创建节点
+                var newnode = new Node(key);
+                // 如果this.root为空，也就是第一个为根节点，否则插入节点
+                if (this.root === null) {
+                    this.root = newnode;
+                } else {
+                    insertNode(this.root, newnode);
+                }
+            };
+        }
+
+        // 数组存放没放入排序二叉树的节点
+        var nodes = [8, 3, 10, 1, 6, 14, 4, 7, 13];
+        var binaryTree = new BinaryTree;
+        nodes.forEach(function (key) {
+            binaryTree.insert(key);
+        });
+        console.log(binaryTree);
+    </script>
+</body>
+
+</html>
