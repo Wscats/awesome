@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //节点类
+        function Node(element) {
+            this.element = element;   //当前节点的元素
+            this.next = null;         //下一个节点链接
+            this.previous = null;     //上一个节点链接
+        }
+        //链表类
+        function LList() {
+            this.head = new Node('head');       //头节点
+            this.find = find;                   //查找节点
+            this.insert = insert;               //插入节点
+            this.remove = remove;               //删除节点
+            this.findPrev = findPrev;           //查找前一个节点
+            this.display = display;             //显示链表
+        }
+        //查找给定节点
+        function find(item) {
+            var currNode = this.head;
+            // 开始遍历整个链表，先从头部开始，如果头部的element不等于要找的这个继续往next里面再找
+            while (currNode.element != item) {
+                // 把头部的next赋值给currNode，继续再找当找到就返回currNode
+                currNode = currNode.next;
+            }
+            // 返回需要插入的节点
+            return currNode;
+        }
+        //插入节点
+        function insert(newElement, item) {
+            var newNode = new Node(newElement);
+            var currNode = this.find(item);
+            newNode.next = currNode.next;
+            newNode.previous = currNode;
+            currNode.next = newNode;
+        }
+        //删除节点
+        function remove(item) {
+            var currNode = this.find(item);
+            if (!(currNode.next == null)) {
+                currNode.previous.next = currNode.next;
+                currNode.next.previous = currNode.previous;
+                currNode.next = null;
+                currNode.previous = null;
+            }
+        }
+
+        //查找带删除节点的前一个节点
+        function findPrev(item) {
+            var currNode = this.head;
+            // 寻找当前的currNode的next的element是否是item，然后不断遍历，知道找到为止
+            while (!(currNode.next == null) && (currNode.next.element != item)) {
+                currNode = currNode.next;
+            }
+            return currNode;
+        }
+
+        function display() {
+            var currNode = this.head;
+            while (!(currNode.next == null)) {
+                console.log(currNode.next.element);
+                currNode = currNode.next;
+            }
+        }
+
+        var fruits = new LList();
+        // 把Apple加载head的next
+        fruits.insert('Apple', 'head');
+        fruits.insert('Banana', 'Apple');
+        fruits.insert('Pear', 'Banana');
+        fruits.insert('Grape', 'Pear');
+        console.log(fruits);
+        // console.log(fruits.display());
+    </script>
+</body>
+
+</html>
