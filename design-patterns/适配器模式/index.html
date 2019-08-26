@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class GooleMap {
+            show() {
+                console.log('渲染谷歌地图')
+            }
+        }
+
+        class BaiduMap {
+            show() {
+                console.log('渲染百度地图')
+            }
+        }
+
+        function render(map) {
+            if (map.show instanceof Function) {
+                map.show()
+            }
+        }
+
+        render(new GooleMap())  // 渲染谷歌地图
+        render(new BaiduMap())  // 渲染百度地图
+    </script>
+</body>
+
+</html>
