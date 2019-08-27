@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class MyImage {
+            constructor() {
+                this.img = new Image()
+                document.body.appendChild(this.img)
+            }
+            setSrc(src) {
+                this.img.src = src
+            }
+        }
+
+        class ProxyImage {
+            constructor() {
+                this.proxyImage = new Image()
+            }
+
+            setSrc(src) {
+                let myImageObj = new MyImage()
+                myImageObj.img.src = 'file://xxx.png'  //为本地图片url
+                this.proxyImage.src = src
+                this.proxyImage.onload = function () {
+                    myImageObj.img.src = src
+                }
+            }
+        }
+
+        var proxyImage = new ProxyImage()
+        proxyImage.setSrc('http://xxx.png') //服务器资源url
+
+    </script>
+</body>
+
+</html>
